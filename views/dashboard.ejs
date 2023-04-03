@@ -1,0 +1,24 @@
+<%- include('./partials/header.ejs')%>
+<title>Dashboard</title>
+<%- include('./partials/navbar.ejs')%>
+<div class="formmain">
+  <center>
+    <h1>Welcome , <%= user.firstName %> <%= user.lastName %> !</h1>
+    <br />
+    <h4>Number of Quizzes created : <%=user.quizCreated%></h4>
+    <br />
+    <button class="btn btn-primary">
+      <a href="/create-quiz" class="link-light" style="text-decoration: none"
+        >+ Create a New Quiz</a
+      >
+    </button>
+  </center>
+  <ol>
+    <% quizzes.forEach(element => { %>
+    <li>
+      <a href="/quiz/<%=element._id%>"> <%= element.title%> </a>
+    </li>
+    <% }) %>
+  </ol>
+</div>
+<%- include('./partials/footer.ejs')%>

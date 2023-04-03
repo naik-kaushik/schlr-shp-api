@@ -1,0 +1,22 @@
+<%- include('./partials/header.ejs')%>
+<title><%=qz.title%></title>
+<%- include('./partials/navbar.ejs')%>
+<div class="container-fluid" style="width: 80%; padding: 10px">
+  <h1><%=qz.title%></h1>
+  <% const iArray = qz.instructions.split('\r') %>
+  <h2>Instructions :</h2>
+  <% iArray.forEach(el => { %>
+  <p><%=el%></p>
+  <% }) %> <% qz.questions.forEach((que)=>{ %>
+  <h3><%=qCount%> ) <%=que.statement%></h3>
+  <% qCount++; %>
+  <ol>
+    <li><%=que.opt1%></li>
+    <li><%=que.opt2%></li>
+    <li><%=que.opt3%></li>
+    <li><%=que.opt4%></li>
+  </ol>
+  <br />
+  <% }) %>
+</div>
+<%- include('./partials/footer.ejs')%>
