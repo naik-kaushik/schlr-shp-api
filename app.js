@@ -9,12 +9,18 @@ const DetUser = require("./models/detailedUser");
 const session = require("express-session");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
+const cors = require("cors");
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 app.use(
   session({
@@ -102,14 +108,12 @@ app.get("/stats", function (req, res) {
     Quiz.find({ subject: "maths" }).then((res2) => {
       Quiz.find({ subject: "english" }).then((res3) => {
         Quiz.find({ subject: "science" }).then((res4) => {
-          res
-            .status(200)
-            .json({
-              all: res1.length,
-              maths: res2.length,
-              english: res3.length,
-              science: res4.length,
-            });
+          res.status(200).json({
+            all: res1.length,
+            maths: res2.length,
+            english: res3.length,
+            science: res4.length,
+          });
         });
       });
     });
