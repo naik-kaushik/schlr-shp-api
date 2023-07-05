@@ -61,7 +61,7 @@ app.get("/dashboard", (req, res) => {
 
 app.get("/quiz/:id", (req, res) => {
   Quiz.findOne({ _id: req.params.id }).then((ans) => {
-    res.status(200).json({ quiz: ans});
+    res.status(200).json({ quiz: ans });
   });
 });
 
@@ -94,6 +94,20 @@ app.post("/login", function (req, res) {
         res.status(200).json(true);
       });
     }
+  });
+});
+
+app.get("/stats", function (req, res) {
+  Quiz.find({}).then((res1) => {
+    Quiz.find({ subject: "maths" }).then((res2) => {
+      Quiz.find({ subject: "english" }).then((res3) => {
+        Quiz.find({ subject: "science" }).then((res4) => {
+          res
+            .status(200)
+            .json({ all: res1, maths: res2, english: res3, science: res4 });
+        });
+      });
+    });
   });
 });
 
