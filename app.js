@@ -104,7 +104,12 @@ app.get("/stats", function (req, res) {
         Quiz.find({ subject: "science" }).then((res4) => {
           res
             .status(200)
-            .json({ all: res1.length, maths: res2, english: res3, science: res4 });
+            .json({
+              all: res1.length,
+              maths: res2.length,
+              english: res3.length,
+              science: res4.length,
+            });
         });
       });
     });
