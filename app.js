@@ -105,28 +105,20 @@ app.post("/login", function (req, res) {
 
 app.get("/stats", function (req, res) {
   Quiz.find({}).then((res1) => {
-    let all = res1.length,
-      eng = 0,
-      maths = 0,
-      it = 0,
-      marathi = 0;
-    for (let i = 0; i < res1.length; i++) {
-      if (res1[i].subject == "maths") {
-        maths = maths + 1;
-      } else if (res1[i].subject == "english") {
-        eng = eng + 1;
-      } else if (res1[i].subject == "it") {
-        it = it + 1;
-      } else {
-        marathi = marathi + 1;
-      }
-    }
-    res.status(200).json({
-      all: all,
-      english: eng,
-      it: it,
-      maths: maths,
-      marathi: marathi,
+    Quiz.find({ subject: "maths" }).then((maths) => {
+      Quiz.find({ subject: "marathi" }).then((marathi) => {
+        Quiz.find({ subject: "it" }).then((it) => {
+          Quiz.find({ subject: "english" }).then((english) => {
+            res.status(200).json({
+              all: res1.length,
+              it: it.length,
+              marathi: marathi.length,
+              english: english.length,
+              maths: maths.length,
+            });
+          });
+        });
+      });
     });
   });
 });
