@@ -111,11 +111,11 @@ app.get("/stats", function (req, res) {
       it = 0,
       marathi = 0;
     for (let i = 0; i < res1.length; i++) {
-      if (res1[i].subject === "maths") {
+      if (res1[i].subject == "maths") {
         maths = maths + 1;
-      } else if (res1[i].subject === "english") {
+      } else if (res1[i].subject == "english") {
         eng = eng + 1;
-      } else if (res1[i].subject === "it") {
+      } else if (res1[i].subject == "it") {
         it = it + 1;
       } else {
         marathi = marathi + 1;
