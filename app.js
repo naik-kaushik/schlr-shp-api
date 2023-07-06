@@ -52,6 +52,12 @@ app.get("/isAuthenticated", passport.authenticate("local"), (req, res) => {
   res.status(200).json({ message: "Signed up successfully!" });
 });
 
+app.get('/quiz-all',function(req,res){
+  Quiz.find({}).then(result=>{
+    res.status(400).json({data : result});
+  })
+})
+
 app.get("/dashboard", (req, res) => {
   if (req.isAuthenticated()) {
     DetUser.findOne({ username: req.user.username }).then((user) => {
