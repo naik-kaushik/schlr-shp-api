@@ -54,7 +54,7 @@ app.get("/isAuthenticated", passport.authenticate("local"), (req, res) => {
 
 app.get('/quiz-all',function(req,res){
   Quiz.find({}).then(result=>{
-    res.status(400).json({data : result});
+    res.status(200).json({data : result});
   })
 })
 
