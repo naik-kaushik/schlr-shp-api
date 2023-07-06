@@ -67,7 +67,7 @@ app.get("/dashboard", (req, res) => {
       });
     });
   } else {
-    res.status(401).json({ message: "To see Dashboard, Log In First!" });
+    res.status(200).json({ message: "To see Dashboard, Log In First!" });
   }
 });
 
@@ -81,13 +81,13 @@ app.get("/login", function (req, res) {
   if (req.isAuthenticated()) {
     res.status(200).json(true);
   } else {
-    res.status(401).json({ message: "Log In!" });
+    res.status(200).json({ message: "Log In!" });
   }
 });
 
 app.get("/logout", function (req, res) {
   req.logout(function (err) {
-    res.status(501).json("Failed to Logout , Retry!");
+    res.status(200).json({message:"Failed to Logout , Retry!"});
   });
   res.status(200).json({ message: "Logged Out Successfully!" });
 });
@@ -100,7 +100,7 @@ app.post("/login", function (req, res) {
 
   req.login(user, function (err) {
     if (err) {
-      res.status(401).json({ message: err });
+      res.status(200).json({ message: err });
     } else {
       passport.authenticate("local")(req, res, function () {
         res.status(200).json(true);
