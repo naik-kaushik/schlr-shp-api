@@ -103,7 +103,7 @@ app.post("/login", function (req, res) {
       res.status(200).json({ message: err });
     } else {
       passport.authenticate("local")(req, res, function () {
-        res.status(200).json(true);
+        res.status(200).json({status:true,user : DetUser.findOne({username : user.username})});
       });
     }
   });
