@@ -103,8 +103,9 @@ app.post("/login", function (req, res) {
       res.status(200).json({ message: err });
     } else {
       passport.authenticate("local")(req, res, function () {
-        const foundUser = await DetUser.findOne({ username: req.user.username });
-        res.status(200).json({status:true,user : foundUser});
+        DetUser.findOne({ username: req.user.username }).then((foundUser)=>{
+          res.status(200).json({status:true,user : foundUser});
+        })
       });
     }
   });
