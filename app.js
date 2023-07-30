@@ -45,7 +45,7 @@ passport.deserializeUser(User.deserializeUser());
 mongoose.connect(process.env.MONGO_URI);
 
 app.get("/", (req, res) => {
-  res.send("DOCS coming soon...");
+  // res.send("DOCS coming soon...");
   if(req.session.passport.user){
     res.status(200).json(
       {
@@ -53,6 +53,11 @@ app.get("/", (req, res) => {
         username : req.session.passport.username
       }
     )
+  }
+  else{
+    res.status(200).json({
+      message : "NO"
+    })
   }
 });
 
