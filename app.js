@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(
   cors({
-    origin: "http://localhost:3000/",
+    origin: "http://localhost:3000",
     methods : ["GET","POST"],
     credentials : true
   })
