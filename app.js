@@ -104,7 +104,7 @@ app.post("/login", function (req, res) {
     } else {
       passport.authenticate("local")(req, res, function () {
         DetUser.findOne({ username: req.user.username }).then((foundUser)=>{
-          res.status(200).json({status:true,user : foundUser});
+          res.status(200).json({status:true,user : req.user,session:req.session});
         })
       });
     }
