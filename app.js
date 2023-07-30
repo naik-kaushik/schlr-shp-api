@@ -48,25 +48,10 @@ mongoose.connect(process.env.MONGO_URI);
 
 app.get("/", (req, res) => {
   // res.send("DOCS coming soon...");
-  try{
-      if(req.session.passport.user){
-      res.status(200).json(
-        {
-          message : "OK",
-          username : req.session.passport.username
-        }
-      )
-    }
-    else{
-      res.status(200).json({
-        message : "NO"
-      })
-    }
-  }
-  catch(err){
-    res.status(200).json({
-      message : "Didn't work!"
-    })
+  if(req.session.user){
+    res.send({loggedIn : true,user,req.session.user});
+  }else{
+    res.send({loggedIn : false})
   }
 });
 
@@ -126,6 +111,7 @@ app.post("/login", function (req, res) {
     } else {
       passport.authenticate("local")(req, res, function () {
         DetUser.findOne({ username: req.user.username }).then((foundUser)=>{
+          req.session.user = req.user.username;
           res.status(200).json({status:true,session:req.session});
         })
       });
