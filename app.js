@@ -85,7 +85,7 @@ app.get("/quiz/:id", (req, res) => {
 });
 
 app.get("/login", function (req, res) {
-  res.send(req.session.user);
+  res.status(200).json({user : req.session.user});
 });
 
 app.get("/logout", function (req, res) {
