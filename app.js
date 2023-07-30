@@ -49,7 +49,7 @@ mongoose.connect(process.env.MONGO_URI);
 app.get("/", (req, res) => {
   // res.send("DOCS coming soon...");
   if(req.session.user){
-    res.send({loggedIn : true,user,req.session.user});
+    res.send({loggedIn : true,user:req.session.user});
   }else{
     res.send({loggedIn : false})
   }
