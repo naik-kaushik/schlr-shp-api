@@ -85,11 +85,7 @@ app.get("/quiz/:id", (req, res) => {
 });
 
 app.get("/login", function (req, res) {
-  if (req.isAuthenticated()) {
-    res.status(200).json(true);
-  } else {
-    res.status(200).json({ message: "Log In!" });
-  }
+  res.send(req.session.user);
 });
 
 app.get("/logout", function (req, res) {
