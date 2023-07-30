@@ -46,6 +46,14 @@ mongoose.connect(process.env.MONGO_URI);
 
 app.get("/", (req, res) => {
   res.send("DOCS coming soon...");
+  if(req.session.passport.user){
+    res.status(200).json(
+      {
+        message : "OK",
+        username : req.session.passport.username
+      }
+    )
+  }
 });
 
 app.get("/isAuthenticated", passport.authenticate("local"), (req, res) => {
