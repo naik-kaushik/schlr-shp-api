@@ -19,6 +19,8 @@ app.use(express.static("public"));
 app.use(
   cors({
     origin: "*",
+    methods : ["GET","POST"],
+    credentials : true
   })
 );
 
