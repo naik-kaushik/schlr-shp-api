@@ -23,16 +23,18 @@ app.use(
     credentials : true
   })
 );
-
 app.use(
-  session({
-    secret: process.env.SECRET,
-    resave: true,
-    saveUninitialized: false,
-    cookie:{
-      expires : 1000*60*60*24
-  })
+    session({
+        secret: process.env.SECRET,
+        resave: true,
+        saveUninitialized: false,
+        cookie: {
+            expires:  1000*60*60*24
+        }
+    })
 );
+
+
 
 app.use(passport.initialize());
 app.use(passport.session());
