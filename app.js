@@ -27,8 +27,10 @@ app.use(
 app.use(
   session({
     secret: process.env.SECRET,
-    resave: false,
+    resave: true,
     saveUninitialized: false,
+    cookie:{
+      expires : 1000*60*60*24;
   })
 );
 
