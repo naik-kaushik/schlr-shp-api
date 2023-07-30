@@ -26,8 +26,8 @@ app.use(
 app.use(
     session({
         secret: process.env.SECRET,
-        resave: false,
-        saveUninitialized: true,
+        resave: true,
+        saveUninitialized: false,
         cookie: {
             secure:true,
             expires:  1000*60*60*24
